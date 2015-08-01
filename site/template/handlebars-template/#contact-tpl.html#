@@ -1,0 +1,6 @@
+<script id="contactTpl" type="text/template">
+  <td>{{first_name}}</td>
+  <td>{{last_name}}</td>
+  <td>{{email_address}}</td>
+  <td>{{description}}</td>
+</script>

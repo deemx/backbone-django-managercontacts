@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Менеджер контактов</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    <h1>Менеджер контактов</h1>
+
+    <form id="contact-form" class="module">
+      <div>
+        <label for="first_name">Имя:</label>
+        <input type="text" id="first_name" name="first_name">
+      </div>
+      
+      <div>
+        <label for="last_name">Фамилия:</label>
+        <input type="text" id="last_name" name="last_name">
+      </div>
+      
+      <div>
+        <label for="email_address">Email:</label>
+        <input type="text" id="email_address" name="email_address">
+      </div>
+      
+      <div>
+        <label for="description">Описание:</label>
+        <input type="text" id="description" name="description">
+      </div>
+
+      <div>
+        <input type="submit" value="Добавить контакт.">
+      </div>
+    </form>
+    
+    <table id="allContactsTable" class="module">
+      <thead>
+        <tr>
+          <td><strong>Имя</strong></td>
+          <td><strong>Фамилия</strong></td>
+          <td><strong>Email</strong></td>
+          <td><strong>Описание</strong></td>
+          <td><strong>Действия</strong></td>
+        </tr>
+      </thead>
+    </table>
+
+    <div id="contact-form-block" class="module">
+
+    </div>
+    
+    {% include "handlebars-template/contact-tpl.html" %}
+    {% include "handlebars-template/edit-tpl.html" %}
+    
+    <script src="static/js/underscore.js"></script>
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/backbone.js"></script>
+    <script src="static/js/handlebars.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/models.js"></script>
+    <script src="static/js/collections.js"></script>
+    <script src="static/js/views.js"></script>
+    <script src="static/js/routes.js"></script>
+
+    <script>
+     new App.Router();
+     Backbone.history.start();
+
+     App.contacts = new App.Collections.Contacts();
+     App.contacts.fetch().then(function() {
+       new App.Views.App({ collection: App.contacts });
+     });
+     
+    </script>
+  </body>
+</html>
